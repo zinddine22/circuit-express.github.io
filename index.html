@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circuit Express | Serious Game Pédagogique</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+<style>
+:root {
+    --primary: #ffd700;
+    --secondary: #00f2ff;
+    --bg: #f0f4f8;
+    --glass: rgba(255,255,255,0.4);
+    --glass-border: rgba(0,0,0,0.1);
+    --text-main: #1f2937;
+    --c-blue:#4a90e2;
+    --c-gray:#6b7280;
+    --c-orange:#f5a623;
+    --c-purple:#9013fe;
+    --c-yellow:#f8e71c;
+    --c-red:#d0021b;
+    --c-green:#7ed321;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    background:var(--bg);
+    color:var(--text-main);
+    font-family:'Outfit',sans-serif;
+    line-height:1.6;
+}
+
+header{
+    position:fixed;top:0;width:100%;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1.5rem 6%;
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--glass-border);
+    z-index:1000;
+}
+.logo{font-weight:900;font-size:1.4rem;color:var(--primary);letter-spacing:2px}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{text-decoration:none;color:var(--text-main);font-size:.8rem;font-weight:600;text-transform:uppercase}
+nav a:hover{color:var(--primary)}
+
+section{min-height:100vh;padding:120px 10%;display:flex;flex-direction:column;justify-content:center}
+
+.hero{text-align:center}
+.hero h1{font-size:clamp(3rem,8vw,6rem);font-weight:900}
+.hero h1 span{color:var(--primary)}
+.hero p{max-width:800px;margin:2rem auto;color:#374151;font-size:1.3rem}
+.btn{
+    padding:1.2rem 3rem;border-radius:50px;
+    background:var(--primary);color:#000;
+    font-weight:800;text-decoration:none;
+    box-shadow:0 10px 30px rgba(255,215,0,.3);
+}
+
+.section-title{text-align:center;font-size:3rem;font-weight:900;margin-bottom:1rem}
+.section-title span{color:var(--secondary)}
+.section-subtitle{text-align:center;color:#374151;max-width:700px;margin:0 auto 3rem}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:2.5rem;
+}
+
+.glass-card{
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+    border-radius:30px;
+    padding:3rem;
+    backdrop-filter:blur(10px);
+}
+.glass-card h3{color:#111;margin-bottom:1rem}
+.glass-card p{color:#374151}
+
+.deck{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:2rem;
+}
+
+.game-card{
+    background:#fff;color:#333;
+    border-radius:18px;
+    padding:1rem;
+    height:320px;
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,.1);
+}
+.cat{font-size:.6rem;font-weight:900;text-transform:uppercase;color:#fff;padding:6px;border-radius:6px}
+.icon{font-size:3rem;margin:1.2rem 0}
+.title{font-weight:800;border-bottom:2px solid #eee;padding-bottom:.5rem}
+.desc{font-size:.75rem;color:#666;margin-top:.5rem}
+.symbol{margin-top:auto;font-family:'JetBrains Mono';opacity:.6}
+
+.blue{background:var(--c-blue)}
+.gray{background:var(--c-gray)}
+.orange{background:var(--c-orange)}
+.purple{background:var(--c-purple)}
+.yellow{background:var(--c-yellow);color:#000}
+.red{background:var(--c-red)}
+.green{background:var(--c-green)}
+
+footer{
+    padding:4rem 10%;
+    text-align:center;
+    border-top:1px solid var(--glass-border);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⚡ CIRCUIT EXPRESS</div>
+    <nav>
+        <ul>
+            <li><a href="#hero">Accueil</a></li>
+            <li><a href="#presentation">Présentation</a></li>
+            <li><a href="#objectifs">Objectifs</a></li>
+            <li><a href="#cartes">Cartes</a></li>
+            <li><a href="#regles">Règles</a></li>
+            <li><a href="#fiche">Fiche Jeu</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" id="hero">
+    <h1>Circuit <span>Express</span></h1>
+    <p>Circuit Express est un jeu de cartes éducatif conçu pour introduire
+       les bases des circuits électriques et de l’automatisme de manière ludique et structurée.</p>
+    <a href="#presentation" class="btn">Découvrir le jeu</a>
+</section>
+
+<section id="presentation">
+    <h2 class="section-title">Présentation du <span>jeu</span></h2>
+    <p class="section-subtitle">
+        Circuit Express est un <strong>serious game</strong> destiné à l’apprentissage
+        progressif des circuits électriques simples. Les joueurs doivent construire
+        un circuit fonctionnel en respectant un ordre logique précis, tout en gérant
+        des contraintes imposées par les cartes Avantage et Panne.
+    </p>
+</section>
+
+<section id="objectifs">
+    <h2 class="section-title">Objectifs <span>Pédagogiques</span></h2>
+    <div class="grid">
+        <div class="glass-card"><i class="icon fa-solid fa-plug"></i><p>Identifier les composants électriques</p></div>
+        <div class="glass-card"><i class="icon fa-solid fa-diagram-project"></i><p>Comprendre le sens de circulation d’un circuit</p></div>
+        <div class="glass-card"><i class="icon fa-solid fa-sitemap"></i><p>Assembler un circuit cohérent</p></div>
+        <div class="glass-card"><i class="icon fa-solid fa-brain"></i><p>Apprendre par l’erreur et la correction</p></div>
+    </div>
+</section>
+
+<section id="cartes">
+    <h2 class="section-title">Types de <span>cartes</span></h2>
+    <p class="section-subtitle">Chaque carte possède un rôle spécifique.</p>
+
+    <div class="deck">
+        <!-- Source card -->
+        <div class="game-card" data-tilt>
+            <div class="cat blue">Source</div>
+            <div class="icon">🔌</div>
+            <div class="title">Source d’alimentation</div>
+            <div class="desc">Exemple : batterie, générateur AC, etc.</div>
+            <div class="symbol">⏦</div>
+        </div>
+
+        <!-- Connexion card -->
+        <div class="game-card" data-tilt>
+            <div class="cat gray">Connexion</div>
+            <div class="icon">🔗</div>
+            <div class="title">Fil</div>
+            <div class="desc">Permet de relier les différents éléments du circuit.</div>
+            <div class="symbol">-</div>
+        </div>
+
+        <!-- Interrupteur / Capteur card -->
+        <div class="game-card" data-tilt>
+            <div class="cat orange">Interrupteur / Capteur</div>
+            <div class="icon">🔘</div>
+            <div class="title">Commande</div>
+            <div class="desc">Commande ou détection dans le circuit.</div>
+            <div class="symbol">|</div>
+        </div>
+
+        <!-- Préactionneur card -->
+        <div class="game-card" data-tilt>
+            <div class="cat purple">Préactionneur</div>
+            <div class="icon">⚙️</div>
+            <div class="title">Préactionneur</div>
+            <div class="desc">Exemple : relais (transmet la commande vers le récepteur).</div>
+            <div class="symbol">A1-A2</div>
+        </div>
+
+        <!-- Récepteur card -->
+        <div class="game-card" data-tilt>
+            <div class="cat yellow">Récepteur</div>
+            <div class="icon">💡</div>
+            <div class="title">Lampe / Moteur</div>
+            <div class="desc">Élément final consommant l’énergie.</div>
+            <div class="symbol">(L)</div>
+        </div>
+
+        <!-- Avantage card -->
+        <div class="game-card" data-tilt>
+            <div class="cat green">Avantage</div>
+            <div class="icon">⭐</div>
+            <div class="title">Bonus</div>
+            <div class="desc">Apporte un bonus ou action spéciale.</div>
+            <div class="symbol">✔️</div>
+        </div>
+
+        <!-- Panne card -->
+        <div class="game-card" data-tilt>
+            <div class="cat red">Panne</div>
+            <div class="icon">⚠️</div>
+            <div class="title">Blocage</div>
+            <div class="desc">Introduit une erreur ou un blocage dans le circuit.</div>
+            <div class="symbol">!</div>
+        </div>
+    </div>
+</section>
+
+<section id="regles">
+    <h2 class="section-title">Règles du <span>jeu</span></h2>
+    <div class="grid">
+        <div class="glass-card">
+            <h3>Début du circuit</h3>
+            <p>Le circuit doit obligatoirement commencer par une carte Source.</p>
+        </div>
+        <div class="glass-card">
+            <h3>Ordre et sens</h3>
+            <p>Le circuit se construit dans un seul sens logique. Il est interdit de poser une carte hors séquence.</p>
+        </div>
+        <div class="glass-card">
+            <h3>Tour du joueur</h3>
+            <p>À chaque tour, le joueur peut jouer une carte ou piocher.</p>
+        </div>
+        <div class="glass-card">
+            <h3>Échange de cartes</h3>
+            <p>Une carte peut être mise en échange avec un autre joueur. La carte reçue est choisie librement par le joueur recevant.</p>
+        </div>
+        <div class="glass-card">
+            <h3>Victoire</h3>
+            <p>Pour gagner : circuit complet, correct et aucune carte en main.</p>
+        </div>
+        <div class="glass-card">
+            <h3>Se débarrasser d’une carte</h3>
+            <p>Se débarrasser d’une carte oblige à sauter le tour suivant.</p>
+        </div>
+    </div>
+</section>
+
+<section id="fiche">
+    <h2 class="section-title">Fiche Jeu de <span>Gamme</span></h2>
+    <div class="grid">
+        <div class="glass-card"><strong>Type de jeu :</strong> Jeu de cartes éducatif</div>
+        <div class="glass-card"><strong>Support :</strong> Cartes physiques</div>
+        <div class="glass-card"><strong>Public cible :</strong> Étudiants, débutants en automatisme</div>
+        <div class="glass-card"><strong>Objectif :</strong> Compréhension des circuits simples</div>
+        <div class="glass-card"><strong>Compétences :</strong> Logique, raisonnement, séquençage</div>
+        <div class="glass-card"><strong>Contexte :</strong> Travaux dirigés, initiation</div>
+    </div>
+</section>
+
+<footer>
+    <h3>⚡ CIRCUIT EXPRESS</h3>
+    <p>Jeu pédagogique sur l’électricité et l’automatisation</p>
+    <p>© 2026 — Projet universitaire</p>
+</footer>
+
+<script>
+VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max:10,
+    speed:400,
+    glare:true,
+    "max-glare":0.2
+});
+</script>
+
+</body>
+</html>
